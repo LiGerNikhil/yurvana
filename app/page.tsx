@@ -1,69 +1,77 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 
-export default function Home() {
+import { dbConnect } from "@/lib/db";
+import { Category } from "@/models/Category";
+import { Item } from "@/models/Item";
+
+import { Hero } from "@/components/site/Hero";
+import { StatsStrip } from "@/components/site/StatsStrip";
+import {
+  CategoriesShowcase,
+  type CategoryCard,
+} from "@/components/site/CategoriesShowcase";
+import { FeaturedItems, type FeaturedItem } from "@/components/site/FeaturedItems";
+import { QualityYurvana } from "@/components/site/QualityYurvana";
+import { CtaBand } from "@/components/site/CtaBand";
+
+export const metadata: Metadata = {
+  title: "YURVANA AGRO | Certified Ayurvedic & Herbal Raw Materials",
+  description:
+    "Bulk sourcing of certified Ayurvedic herbs, seeds, oils, extracts and natural ingredients — botanically verified, COA-backed, pan-India logistics.",
+};
+
+async function loadHomepageData() {
+  try {
+    await dbConnect();
+
+    const [categories, grouped, featured] = await Promise.all([
+      Category.find({ isActive: true }).sort({ sortOrder: 1 }).lean(),
+      Item.aggregate<{ _id: string; count: number }>([
+        { $match: { isActive: true } },
+        { $group: { _id: "$categoryName", count: { $sum: 1 } } },
+      ]),
+      Item.find({ isActive: true, isFeatured: true })
+        .sort({ name: 1 })
+        .limit(12)
+        .lean(),
+    ]);
+
+    const counts = new Map(grouped.map((group) => [group._id, group.count]));
+
+    const categoryCards: CategoryCard[] = categories.map((category) => ({
+      slug: category.slug,
+      name: category.name,
+      count: counts.get(category.name) ?? 0,
+    }));
+
+    const featuredItems: FeaturedItem[] = featured.map((item) => ({
+      slug: item.slug,
+      name: item.name,
+      categoryName: item.categoryName ?? "",
+      form: item.form ?? "",
+      unit: item.unit ?? "kg",
+      priceLow: item.priceLow ?? null,
+      priceHigh: item.priceHigh ?? null,
+    }));
+
+    return { categoryCards, featuredItems };
+  } catch (error) {
+    console.error("[homepage] Failed to load catalog data:", error);
+    return { categoryCards: [], featuredItems: [] };
+  }
+}
+
+export default async function HomePage() {
+  const { categoryCards, featuredItems } = await loadHomepageData();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <Hero />
+      <StatsStrip />
+      <CategoriesShowcase categories={categoryCards} />
+      <FeaturedItems items={featuredItems} />
+      <QualityYurvana />
+      <CtaBand />
+    </>
   );
 }
