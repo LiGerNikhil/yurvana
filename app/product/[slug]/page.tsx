@@ -5,6 +5,7 @@ import { CalendarClock, ExternalLink, Leaf } from "lucide-react";
 
 import { dbConnect } from "@/lib/db";
 import { formatPriceRange, slugify, timeAgo } from "@/lib/utils";
+import { getItemImage } from "@/lib/item-images";
 import { Item } from "@/models/Item";
 
 import { Badge } from "@/components/ui/badge";
@@ -107,6 +108,7 @@ export default async function ProductPage({
   }
 
   const categorySlug = item.categoryName ? slugify(item.categoryName) : null;
+  const displayImage = getItemImage(item.slug, item.image);
 
   return (
     <main className="py-10 sm:py-14">
@@ -141,10 +143,10 @@ export default async function ProductPage({
         <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
           {/* Image / illustration block */}
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-alt">
-            {item.image ? (
+            {displayImage ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={item.image}
+                src={displayImage}
                 alt={item.name}
                 className="h-full w-full object-cover"
               />

@@ -24,15 +24,15 @@ async function loadHomepageData() {
   try {
     await dbConnect();
 
-    const [categories, grouped, featured] = await Promise.all([
+    const [categories, grouped, featuredDocs] = await Promise.all([
       Category.find({ isActive: true }).sort({ sortOrder: 1 }).lean(),
       Item.aggregate<{ _id: string; count: number }>([
         { $match: { isActive: true } },
         { $group: { _id: "$categoryName", count: { $sum: 1 } } },
       ]),
       Item.find({ isActive: true, isFeatured: true })
-        .sort({ name: 1 })
-        .limit(12)
+        .sort({ name: 1, sr: 1 })
+        .limit(24)
         .lean(),
     ]);
 
@@ -44,15 +44,23 @@ async function loadHomepageData() {
       count: counts.get(category.name) ?? 0,
     }));
 
-    const featuredItems: FeaturedItem[] = featured.map((item) => ({
-      slug: item.slug,
-      name: item.name,
-      categoryName: item.categoryName ?? "",
-      form: item.form ?? "",
-      unit: item.unit ?? "kg",
-      priceLow: item.priceLow ?? null,
-      priceHigh: item.priceHigh ?? null,
-    }));
+    const featuredItems: FeaturedItem[] = [];
+    const seenNames = new Set<string>();
+    for (const item of featuredDocs) {
+      const key = item.name.toLowerCase();
+      if (seenNames.has(key)) continue;
+      seenNames.add(key);
+      featuredItems.push({
+        slug: item.slug,
+        name: item.name,
+        categoryName: item.categoryName ?? "",
+        form: item.form ?? "",
+        unit: item.unit ?? "kg",
+        priceLow: item.priceLow ?? null,
+        priceHigh: item.priceHigh ?? null,
+      });
+      if (featuredItems.length === 12) break;
+    }
 
     return { categoryCards, featuredItems };
   } catch (error) {

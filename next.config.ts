@@ -9,6 +9,13 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "amscardiology.com", search: "" },
       { protocol: "https", hostname: "www.savvyandshine.com" },
       { protocol: "https", hostname: "domf5oio6qrcr.cloudfront.net", search: "" },
+      { protocol: "https", hostname: "cdn.britannica.com", search: "" },
+      { protocol: "https", hostname: "m.media-amazon.com", search: "" },
+      { protocol: "https", hostname: "nauratanspices.com", search: "" },
+      { protocol: "https", hostname: "www.cureveda.com" },
+      { protocol: "https", hostname: "thewholesaler.in" },
+      { protocol: "https", hostname: "www.iafaforallergy.com", search: "" },
+      { protocol: "https", hostname: "rawleafstory.com" },
     ],
   },
 };
