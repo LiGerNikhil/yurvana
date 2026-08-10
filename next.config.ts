@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
+      { protocol: "https", hostname: "www.grocery.coop", search: "" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "amscardiology.com", search: "" },
+      { protocol: "https", hostname: "www.savvyandshine.com" },
+      { protocol: "https", hostname: "domf5oio6qrcr.cloudfront.net", search: "" },
+    ],
+  },
 };
 
 export default nextConfig;

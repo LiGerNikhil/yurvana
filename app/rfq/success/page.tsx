@@ -29,15 +29,17 @@ export default function RfqSuccessPage({
             with pricing, availability, and next steps within one business day.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/catalog">
-              <a className="inline-flex items-center justify-center rounded-full bg-accent-gold px-6 py-3 text-sm font-semibold text-primary-dark transition hover:bg-accent-gold/90">
-                Continue browsing
-              </a>
+            <Link
+              href="/catalog"
+              className="inline-flex items-center justify-center rounded-full bg-accent-gold px-6 py-3 text-sm font-semibold text-primary-dark transition hover:bg-accent-gold/90"
+            >
+              Continue browsing
             </Link>
-            <Link href="/">
-              <a className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-text-primary transition hover:bg-muted">
-                Return home
-              </a>
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-text-primary transition hover:bg-muted"
+            >
+              Return home
             </Link>
           </div>
         </div>
