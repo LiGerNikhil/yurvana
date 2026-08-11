@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,10 +19,15 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { data: session, status } = useSession();
   const [error, setError] = React.useState<string | null>(null);
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard";
+  const [callbackUrl, setCallbackUrl] = React.useState("/admin/dashboard");
+
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get("callbackUrl") || "/admin/dashboard";
+    setCallbackUrl(url);
+  }, []);
 
   const {
     register,
