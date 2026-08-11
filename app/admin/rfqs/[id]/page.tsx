@@ -240,7 +240,7 @@ export default function AdminRfqDetailPage() {
                         <TableCell>{item.unit}</TableCell>
                         <TableCell>
                           {item.targetPrice != null
-                            ? `${item.targetPrice.toLocaleString()} USD`
+                            ? `₹${item.targetPrice.toLocaleString("en-IN")}`
                             : "TBD"}
                         </TableCell>
                       </TableRow>

@@ -1,16 +1,14 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -21,8 +19,10 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
   const [error, setError] = React.useState<string | null>(null);
-  const callbackUrl = "/admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard";
 
   const {
     register,
@@ -43,6 +43,7 @@ export default function AdminLoginPage() {
         redirect: false,
         email: values.email,
         password: values.password,
+        callbackUrl,
       });
 
       if (!result) {
@@ -59,6 +60,12 @@ export default function AdminLoginPage() {
     },
     [callbackUrl, router],
   );
+
+  React.useEffect(() => {
+    if (status === "authenticated") {
+      router.push(callbackUrl);
+    }
+  }, [callbackUrl, router, status]);
 
   return (
     <main className="min-h-screen bg-bg-base px-4 py-10 sm:px-6 sm:py-16">

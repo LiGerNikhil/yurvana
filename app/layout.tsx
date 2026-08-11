@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 
+import { Providers } from "@/app/providers";
 import { RfqCartProvider } from "@/components/site/rfq-cart";
 import { ToastProvider } from "@/components/site/toast";
 import { Navbar } from "@/components/site/Navbar";
@@ -34,14 +35,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fontHeading.variable} ${fontBody.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <RfqCartProvider>
-          <ToastProvider>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <FloatingRfqButton />
-            <Footer />
-          </ToastProvider>
-        </RfqCartProvider>
+        <Providers>
+          <RfqCartProvider>
+            <ToastProvider>
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <FloatingRfqButton />
+              <Footer />
+            </ToastProvider>
+          </RfqCartProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -36,7 +36,7 @@ const statusBadge = (value: boolean) =>
   value ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-700";
 
 const priceLabel = (value: number | null) =>
-  value == null ? "—" : `${value.toLocaleString()} USD`;
+  value == null ? "—" : `₹${value.toLocaleString("en-IN")}`;
 
 export default function AdminItemsPage() {
   const [items, setItems] = React.useState<AdminItem[]>([]);
