@@ -136,14 +136,14 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-[#fbf7f0]/60">
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 size-4 shrink-0 text-accent-gold" />
-                <a href="mailto:quotes@yurvanaagro.com" className="hover:text-accent-gold">
-                  quotes@yurvanaagro.com
+                <a href="mailto:info@yurvanaagro.com" className="hover:text-accent-gold">
+                  info@yurvanaagro.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 size-4 shrink-0 text-accent-gold" />
-                <a href="tel:+919876543210" className="hover:text-accent-gold">
-                  +91 98765 43210
+                <a href="tel:+918929464846" className="hover:text-accent-gold">
+                  +91 89294 64846
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
