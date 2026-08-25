@@ -32,7 +32,7 @@ function Wordmark() {
       </span>
       <span className="flex flex-col leading-none">
         <span className="font-heading text-[15px] font-semibold tracking-wide text-text-primary">
-          YURVANA <span className="text-accent-gold">AGRO</span>
+          YURVANA <span className="text-accent-gold">Grow</span>
         </span>
         <span className="mt-0.5 text-[10px] font-medium tracking-[0.22em] text-text-muted uppercase">
           Raw Material Sourcing

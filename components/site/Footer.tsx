@@ -64,7 +64,7 @@ export function Footer() {
               </span>
               <span className="flex flex-col leading-none">
                 <span className="font-heading text-[15px] font-semibold tracking-wide text-[#fbf7f0]">
-                  YURVANA <span className="text-accent-gold">AGRO</span>
+                  YURVANA <span className="text-accent-gold">Grow</span>
                 </span>
                 <span className="mt-0.5 text-[10px] font-medium tracking-[0.22em] uppercase">
                   Raw Material Sourcing
@@ -137,7 +137,7 @@ export function Footer() {
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 size-4 shrink-0 text-accent-gold" />
                 <a href="mailto:info@yurvanaagro.com" className="hover:text-accent-gold">
-                  info@yurvanaagro.com
+                  info@yurvanagrow.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5">

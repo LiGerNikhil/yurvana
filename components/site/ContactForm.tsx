@@ -159,7 +159,7 @@ export function ContactForm() {
         </div>
         <div className="space-y-4 text-sm text-text-muted">
           <div className="rounded-3xl border border-border bg-white p-5">
-            <p className="font-semibold text-text-primary">Office</p>
+            <p className="font-semibold text-text-primary">Powered by</p>
             <p className="mt-2">YURVANA AGRO SOLUTIONS PVT. LTD.</p>
             <p>123 Botanical Avenue</p>
             <p>Mumbai, Maharashtra, India</p>

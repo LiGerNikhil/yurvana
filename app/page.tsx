@@ -15,7 +15,7 @@ import { QualityYurvana } from "@/components/site/QualityYurvana";
 import { CtaBand } from "@/components/site/CtaBand";
 
 export const metadata: Metadata = {
-  title: "YURVANA AGRO | Certified Ayurvedic & Herbal Raw Materials",
+  title: "YURVANA GROW | Certified Ayurvedic & Herbal Raw Materials",
   description:
     "Bulk sourcing of certified Ayurvedic herbs, seeds, oils, extracts and natural ingredients — botanically verified, COA-backed, pan-India logistics.",
 };
