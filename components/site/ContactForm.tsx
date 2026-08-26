@@ -159,26 +159,32 @@ export function ContactForm() {
         </div>
         <div className="space-y-4 text-sm text-text-muted">
           <div className="rounded-3xl border border-border bg-white p-5">
-            <p className="font-semibold text-text-primary">Powered by</p>
+            <p className="font-semibold text-text-primary">Address</p>
             <p className="mt-2">YURVANA AGRO SOLUTIONS PVT. LTD.</p>
-            <p>123 Botanical Avenue</p>
-            <p>Mumbai, Maharashtra, India</p>
+            <p>Floor No.: Basement</p>
+            <p>Building No./Flat No.: A-86</p>
+            <p>Road/Street: GB Nagar</p>
+            <p>Nearby Landmark: Telenity India</p>
+            <p>Locality/Sub Locality: Sector 4</p>
+            <p>City/Town/Village: Noida</p>
+            <p>District: Gautambuddha Nagar</p>
+            <p>State: Uttar Pradesh</p>
+            <p>PIN Code: 201301</p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-5">
             <p className="font-semibold text-text-primary">Phone</p>
-            <p className="mt-2">+91 22 1234 5678</p>
+            <p className="mt-2">+91 89294 64846</p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-5">
             <p className="font-semibold text-text-primary">Email</p>
-            <p className="mt-2">quotes@yurvanaagro.com</p>
+            <p className="mt-2">info@yurvanaagro.com</p>
           </div>
         </div>
         <div className="rounded-3xl border border-border bg-surface p-5">
           <p className="font-semibold text-text-primary">Location</p>
-          <div className="mt-4 h-44 rounded-3xl bg-border" aria-hidden="true">
-            <div className="flex h-full items-center justify-center text-sm text-text-muted">
-              Map placeholder
-            </div>
+          <div className="mt-4 rounded-3xl border border-border bg-white p-4 text-sm text-text-muted">
+            <p>Sector 4, GB Nagar, Noida</p>
+            <p>Gautambuddha Nagar, Uttar Pradesh 201301</p>
           </div>
         </div>
       </aside>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/site/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | YURVANA AGRO",
+  title: "Contact | YURVANA Grow",
   description:
-    "Contact YURVANA AGRO for product inquiries, sourcing support and bulk herbal raw material orders.",
+    "Contact YURVANA Grow for product inquiries, sourcing support and bulk herbal raw material orders.",
 };
 
 export default function ContactPage() {

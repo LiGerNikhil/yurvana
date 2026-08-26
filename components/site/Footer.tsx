@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Leaf, Mail, MapPin, Phone } from "lucide-react"
-import type { SVGProps } from "react"
+import Link from "next/link";
+import { Leaf, Mail, MapPin, Phone } from "lucide-react";
+import type { SVGProps } from "react";
 
 const QUICK_LINKS = [
   { href: "/catalog", label: "Catalog" },
@@ -8,7 +8,7 @@ const QUICK_LINKS = [
   { href: "/about", label: "About Us" },
   { href: "/sourcing-standards", label: "Sourcing Standards" },
   { href: "/contact", label: "Contact" },
-]
+];
 
 const CATEGORIES = [
   { name: "Premium Herbs", slug: "premium-herbs" },
@@ -20,7 +20,7 @@ const CATEGORIES = [
   { name: "Natural Ingredients", slug: "natural-ingredients" },
   { name: "Herbal Extracts", slug: "herbal-extracts" },
   { name: "Superfoods", slug: "superfoods" },
-]
+];
 
 const SOCIALS = [
   {
@@ -50,7 +50,7 @@ const SOCIALS = [
       </svg>
     ),
   },
-]
+];
 
 export function Footer() {
   return (
@@ -73,12 +73,12 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#fbf7f0]/60">
               Bulk supplier of certified Ayurvedic herbs, seeds, oils, extracts
-              and natural ingredients for manufacturers and exporters across
-              the globe.
+              and natural ingredients for manufacturers and exporters across the
+              globe.
             </p>
             <div className="mt-5 flex items-center gap-2">
               {SOCIALS.map((social) => {
-                const Icon = social.Icon
+                const Icon = social.Icon;
                 return (
                   <a
                     key={social.label}
@@ -88,7 +88,7 @@ export function Footer() {
                   >
                     <Icon className="size-4" />
                   </a>
-                )
+                );
               })}
             </div>
           </div>
@@ -136,7 +136,10 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-[#fbf7f0]/60">
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 size-4 shrink-0 text-accent-gold" />
-                <a href="mailto:info@yurvanaagro.com" className="hover:text-accent-gold">
+                <a
+                  href="mailto:info@yurvanaagro.com"
+                  className="hover:text-accent-gold"
+                >
                   info@yurvanagrow.com
                 </a>
               </li>
@@ -151,7 +154,23 @@ export function Footer() {
                 <span>
                   YURVANA AGRO SOLUTIONS PVT. LTD.
                   <br />
-                  Sourced across India · Head office, India
+                  Floor No.: Basement
+                  <br />
+                  Building No./Flat No.: A-86
+                  <br />
+                  Road/Street: GB Nagar
+                  <br />
+                  Nearby Landmark: Telenity India
+                  <br />
+                  Locality/Sub Locality: Sector 4
+                  <br />
+                  City/Town/Village: Noida
+                  <br />
+                  District: Gautambuddha Nagar
+                  <br />
+                  State: Uttar Pradesh
+                  <br />
+                  PIN Code: 201301
                 </span>
               </li>
             </ul>
@@ -164,5 +183,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
